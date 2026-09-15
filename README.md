@@ -4,18 +4,82 @@
 
 > 这是可观察的神经控制实验，不是自动驾驶能力声明。路线规划、交通规则和碰撞保护由外部控制器执行；脑模型接收结构化感知输入，车载摄像头画面供人类观察。
 
-## 体验入口
+> **在线网页仅作效果演示，不连接真实全脑。** 要运行真实 Brian2 全脑模型，请 Clone 本仓库、获取上游全脑数据，并按下方步骤启动本地服务。
 
+## 在线演示 / Online Demo
+
+- 在线效果演示：[https://bennix.github.io/FruitFlyCityDrive/](https://bennix.github.io/FruitFlyCityDrive/)
 - `/`：项目 Landing Page
 - `/simulation.html`：三维模拟控制室
+
+在线版本展示 Landing Page、三维城市、交通参与者和轻量启发模型。GitHub Pages 无法运行 Python/Brian2 服务，因此在线版本不连接真实全脑。
+
+The hosted version demonstrates the landing page, 3D city, traffic agents, and lightweight inspired models. GitHub Pages cannot run the Python/Brian2 service, so the hosted demo is not connected to the real whole-brain model.
+
+## 本地运行 / Run Locally
+
+### 1. 克隆项目 / Clone the repository
+
+```sh
+git clone https://github.com/bennix/FruitFlyCityDrive.git
+cd FruitFlyCityDrive
+```
+
+### 2. 安装网页依赖 / Install web dependencies
+
+需要 Node.js 20 或更高版本。Node.js 20 or newer is required.
 
 ```sh
 npm install
 npm run build
-python city_server.py
 ```
 
-浏览器打开 [http://127.0.0.1:8080](http://127.0.0.1:8080)。开发模式可在 Python 服务运行时另开终端执行 `npm run dev`。
+### 3. 安装真实全脑模型 / Install the real whole-brain model
+
+需要 Python 3.11 和 Git LFS。Python 3.11 and Git LFS are required.
+
+```sh
+git lfs install
+git clone https://github.com/lixiang1076/fly-brain.git vendor/fly-brain
+python3.11 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+```
+
+`vendor/fly-brain` 包含体积较大的连接组数据，下载和首次 Brian2 编译可能需要一些时间。
+
+`vendor/fly-brain` contains large connectome data. The download and first Brian2 compilation may take some time.
+
+### 4. 启动完整模拟 / Start the full simulation
+
+macOS / Linux：
+
+```sh
+.venv/bin/python city_server.py
+```
+
+Windows PowerShell：
+
+```powershell
+.venv\Scripts\python.exe city_server.py
+```
+
+浏览器打开 [http://127.0.0.1:8080](http://127.0.0.1:8080)，再从 Landing Page 进入 3D 模拟器。保持终端运行，真实全脑请求由本地 Python 服务处理。
+
+Open [http://127.0.0.1:8080](http://127.0.0.1:8080) and enter the 3D simulator from the landing page. Keep the terminal running; the local Python service handles real whole-brain requests.
+
+### 5. 前端开发模式 / Frontend development mode
+
+保持 `city_server.py` 运行，并在另一个终端执行：
+
+Keep `city_server.py` running and execute this in another terminal:
+
+```sh
+npm run dev
+```
+
+Vite 开发服务器会把 `/api` 请求代理到 `http://127.0.0.1:8080`。
+
+The Vite development server proxies `/api` requests to `http://127.0.0.1:8080`.
 
 ## 模拟内容
 
@@ -32,14 +96,6 @@ python city_server.py
 ## 神经控制与实时显示
 
 `city_server.py` 使用 Brian2 运行真实连接组模型。每个请求计算独立的 400 ms 窗口：P9 放电参与车速控制，DNa 左右活动影响转向，危险输入刺激 LC4 感觉神经元。接口返回实际输出频率、活跃神经元数、原始神经元 ID 和放电时间；控制室将这些事件绘制为横向滚动的放电时序图。
-
-完整模型包含 138,639 个神经元，首次载入和编译可能需要几十秒。需要先获取上游数据：
-
-```sh
-git clone https://github.com/lixiang1076/fly-brain.git vendor/fly-brain
-python -m venv .venv
-.venv/bin/pip install -r requirements.txt
-```
 
 没有 Python 全脑服务时，网页仍可展示城市与轻量启发模型，但不会产生真实 Brian2 窗口。脑点图采用示意布局，连线并非真实突触；摄像头像素也尚未作为脑模型输入。
 
