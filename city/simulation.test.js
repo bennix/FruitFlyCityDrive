@@ -837,8 +837,10 @@ test('traffic recovery remembers blocked exits while retaining safe fallback rou
   assert.equal(findTrafficExit(incoming,outgoing,()=>false,()=>0,()=>1),null);
 });
 
-test('ordinary roads retain ground-level junctions instead of inheriting bridge layers',()=>{
-  const raw=JSON.parse(fs.readFileSync(new URL('./data/shanghai-api.json',import.meta.url),'utf8'));
+test('ordinary roads retain ground-level junctions instead of inheriting bridge layers',t=>{
+  const source=new URL('./data/shanghai-api.json',import.meta.url);
+  if(!fs.existsSync(source)){t.skip('raw OSM import fixture is intentionally excluded from the repository');return;}
+  const raw=JSON.parse(fs.readFileSync(source,'utf8'));
   const ways=new Map(raw.elements.filter(e=>e.type==='way').map(e=>[String(e.id),e.tags||{}]));
   for(const edge of edges){
     const tags=ways.get(edge.osm_id);
