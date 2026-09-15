@@ -1,0 +1,22 @@
+.venv/
+vendor/
+__pycache__/
+
+node_modules/
+dist/
+.DS_Store
+.vite/
+*.pyc
+artifacts/
+report/
+city/data/shanghai-api.json
+
+# Earlier mouse/verification experiments are outside FruitFlyCityDrive.
+flux_session.py
+flux_visual.py
+fly_controller.py
+mouse_motion.py
+replay_drag.py
+turnstile_demo.py
+test_flux_capture.py
+test_mouse_motion.py

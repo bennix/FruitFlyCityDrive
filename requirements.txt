@@ -1,0 +1,9 @@
+brian2==2.9.0
+numpy==1.26.4
+pandas==2.3.3
+pyarrow==25.0.1
+joblib==1.6.0
+setuptools==80.10.2
+playwright==1.62.0
+pillow==12.3.0
+matplotlib==3.11.2

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="将果蝇神经活动接入上海中心城区交通模拟，观察感知、决策、学习与安全保护。" />
+    <title>Fruit Fly City Drive — 果蝇脑城市驾驶实验</title>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <nav class="nav"><a class="wordmark" href="/">F↗C <span>FRUIT FLY CITY DRIVE</span></a><div class="nav-links"><a href="#system">系统</a><a href="#model">模型边界</a><a class="nav-cta" href="/simulation.html">进入实验 ↗</a></div></nav>
+    <main>
+      <section class="hero">
+        <div class="hero-copy"><p class="kicker">CONNECTOME × SHANGHAI / EXPERIMENT 01</p><h1>让一颗果蝇大脑<br />驶入<span>上海。</span></h1><p class="lede">把神经脉冲接入一座持续运行的三维城市。观察它如何在道路、信号灯、人群与车流之间感知、行动，并在驾驶中学习。</p><div class="actions"><a class="primary-action" href="/simulation.html">启动 3D 模拟 <i>↗</i></a><a class="text-action" href="#system">了解系统 ↓</a></div><dl class="hero-stats"><div><dt>138,639</dt><dd>真实全脑模型神经元</dd></div><div><dt>1,700</dt><dd>上海 OSM 道路节点</dd></div><div><dt>400 ms</dt><dd>Brian2 放电窗口</dd></div></dl></div>
+        <div class="hero-visual" aria-label="果蝇神经活动与城市道路示意图"><div class="map-lines"></div><div class="brain brain-left"></div><div class="brain brain-right"></div><svg class="neural-web" viewBox="0 0 700 700" aria-hidden="true"><g class="synapses"></g><g class="neurons"></g></svg><div class="scanline"></div><p class="visual-label">LIVE NEURAL FIELD <b></b> 138K NODES</p></div>
+      </section>
+      <section class="ticker" aria-label="模拟能力"><div>SHANGHAI ROAD NETWORK</div><div>TRAFFIC SIGNALS</div><div>ONLINE LEARNING</div><div>PEDESTRIAN BRAINS</div><div>COLLISION SHIELD</div></section>
+      <section class="system" id="system"><header class="section-head"><p>02 / THE SYSTEM</p><h2>神经活动进入城市后，<br />每一秒都留下证据。</h2></header><div class="feature-grid">
+        <article class="feature"><span>01</span><h3>真实上海路网</h3><p>基于 OpenStreetMap 的黄浦、静安中心城区道路，包含高架、匝道、单行方向、建筑和路口。</p><div class="mini-map"><b></b></div></article>
+        <article class="feature"><span>02</span><h3>神经运动输出</h3><p>P9 放电参与车速控制，DNa 左右活动影响车道内转向；实际脉冲时序持续滚动显示。</p><div class="raster"></div></article>
+        <article class="feature"><span>03</span><h3>边开边学</h3><p>在线 Q-learning 根据进展、等待、偏离与到达反馈更新刺激策略，学习记忆保存在浏览器中。</p><div class="learning-bars"><i style="--v:42%"></i><i style="--v:68%"></i><i style="--v:57%"></i><i style="--v:86%"></i></div></article>
+        <article class="feature"><span>04</span><h3>城市安全层</h3><p>红绿灯、行人、车辆、建筑与灯杆共同参与逐步碰撞检查。危险动作会在执行前被拦截。</p><div class="shield">SAFE<br /><small>0 COLLISIONS</small></div></article>
+      </div></section>
+      <section class="model" id="model"><div class="model-number">138<span>,</span>639</div><div class="model-copy"><p class="kicker">03 / MODEL BOUNDARY</p><h2>这是一场可观察的实验，<br />不是自动驾驶能力声明。</h2><p>实验车使用真实连接组与 Brian2 LIF 模型的独立 400 ms 窗口。路线规划、交通规则和碰撞保护由外部控制器执行；摄像头画面供人类观察，脑模型接收结构化感知输入。100 名行人分别运行轻量果蝇启发网络。</p><a href="/simulation.html">进入控制室，查看完整指标 →</a></div></section>
+      <section class="final-cta"><p>THE CITY IS RUNNING</p><h2>选择起点。指定终点。<br />看它如何抵达。</h2><a href="/simulation.html">启动实验 <span>↗</span></a></section>
+    </main>
+    <footer><span>FRUIT FLY CITY DRIVE / 2026</span><span>OPENSTREETMAP · BRIAN2 · THREE.JS</span><a href="https://github.com/bennix/FruitFlyCityDrive">GITHUB ↗</a></footer>
+    <script type="module" src="/landing.js"></script>
+  </body>
+</html>
